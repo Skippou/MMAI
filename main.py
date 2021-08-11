@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 as cv
 import os
+
 from time import time
 from windowcapture import WindowCapture
 
@@ -8,17 +9,20 @@ from windowcapture import WindowCapture
 # Doing this because I'll be putting the files from each video in their own folder on GitHub
 os.chdir(os.path.dirname(os.path.abspath(__file__)))
 
+windowName = 'Mini Motorways'
 
 # initialize the WindowCapture class
-wincap = WindowCapture('Mini Motorways')
+
 
 loop_time = time()
+
 while(True):
 
     # get an updated image of the game
-    screenshot = wincap.get_screenshot()
-
-    cv.imshow('Computer Vision', screenshot)
+    wincap = WindowCapture(windowName)
+    screenshot = wincap.get_screenshot(2)
+    
+    cv.imshow(windowName + " Computer Vision", screenshot)
 
     # debug the loop rate
     print('FPS {}'.format(1 / (time() - loop_time)))
@@ -30,4 +34,4 @@ while(True):
         cv.destroyAllWindows()
         break
 
-print('Done.')
+print('Done')
